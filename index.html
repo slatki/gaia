@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Gaia by slatki</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/slatki/gaia">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Gaia</h1>
+            <h2>Gaia is a HTML5-based Phone UI for the Boot 2 Gecko Project. NOTE: For details of what branches are used for what releases, see https://wiki.mozilla.org/Release_Management/B2G_Landing</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/slatki/gaia/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/slatki/gaia/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a name="gaia" class="anchor" href="#gaia"><span class="octicon octicon-link"></span></a>Gaia</h1>
+
+<p>Gaia is Mozilla's Phone UX for the Boot to Gecko (B2G) project.</p>
+
+<p>Boot to Gecko aims to create a complete, standalone operating system for the open web.</p>
+
+<p>You can read more about B2G here:</p>
+
+<p><a href="http://mozilla.org/b2g">http://mozilla.org/b2g</a></p>
+
+<p>follow us on twitter: @Boot2Gecko</p>
+
+<p><a href="http://twitter.com/Boot2Gecko">http://twitter.com/Boot2Gecko</a></p>
+
+<p>join the Gaia mailing list:</p>
+
+<p><a href="http://groups.google.com/group/mozilla.dev.gaia">http://groups.google.com/group/mozilla.dev.gaia</a></p>
+
+<p>and talk to us on IRC:</p>
+
+<p>#gaia on irc.mozilla.org</p>
+
+<p>See INSTALL file in B2G repository for instructions on building and running B2G. To try out Gaia on desktop, see</p>
+
+<p><a href="https://wiki.mozilla.org/Gaia/Hacking">https://wiki.mozilla.org/Gaia/Hacking</a></p>
+
+<h2>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<h3>
+<a name="unit-tests" class="anchor" href="#unit-tests"><span class="octicon octicon-link"></span></a>Unit Tests</h3>
+
+<p>Unit tests for an app go in <code>apps/&lt;APP&gt;/test/unit/</code>.</p>
+
+<p>To run all the unit tests with B2G Desktop:</p>
+
+<ol>
+<li>Run <code>DEBUG=1 make</code>
+</li>
+<li>Run <code>make test-agent-server &amp;</code>
+</li>
+<li>Run B2G Desktop and open the Test Agent app</li>
+<li>
+<p>Run <code>make test-agent-test</code></p>
+
+<p>or <code>make test-agent-test APP=&lt;APP&gt;</code> to run unit tests for a
+specific app</p>
+</li>
+</ol><p>More importantly, you can use test-agent-server to watch the files
+on the filesystem and execute relevant tests when they change:</p>
+
+<ol>
+<li>Run <code>DEBUG=1 make</code>
+</li>
+<li>Run <code>make test-agent-server &amp;</code>
+</li>
+<li>Run B2G Desktop and open the Test Agent app</li>
+<li>Edit files and when you save them, glance at the console with
+test-agent-server running</li>
+</ol><p>Note: If you add new files, you will need to restart test-agent-server.</p>
+
+<p>For more details on writing tests, see:
+<a href="https://developer.mozilla.org/en/Mozilla/Boot_to_Gecko/Gaia_Unit_Tests">https://developer.mozilla.org/en/Mozilla/Boot_to_Gecko/Gaia_Unit_Tests</a></p>
+
+<h3>
+<a name="integration-tests" class="anchor" href="#integration-tests"><span class="octicon octicon-link"></span></a>Integration Tests</h3>
+
+<p>Integration tests for an app are located in
+<code>apps/&lt;APP&gt;/test/integration/</code>.</p>
+
+<p>Prerequisites:</p>
+
+<ol>
+<li>adb</li>
+<li>FirefoxOS Device / Emulator / B2G Desktop</li>
+</ol><p>To run integration tests:</p>
+
+<ol>
+<li>In your gaia/ directory, run <code>make</code> to build the profile</li>
+<li>
+<p>Run B2G Desktop</p>
+
+<p>or forward port 2828 from your device / emulator using
+<code>adb forward tcp:2828 tcp:2828</code></p>
+</li>
+<li>
+<p>Run <code>make test-integration</code> from the gaia/ directory</p>
+
+<p>or <code>make test-integration APP=&lt;APP&gt;</code> to run unit tests for a
+specified app</p>
+
+<p>or <code>make test-integration TESTS=&lt;PATH/TO/TESTFILE.js&gt;</code> to run unit
+tests in a specific file</p>
+
+<p>or <code>make test-integration REPORTER=&lt;REPORTER&gt;</code> to run integration
+tests with the specified reporter, for example <code>XUnit</code></p>
+
+<p>or <code>make test-integration TESTVARS=&lt;PATH/TO/TESTVARS.json&gt;</code> to run
+tests with variables in the testvars file (this defaults to
+testvars.json)</p>
+</li>
+</ol><p>Note: If you're using a FirefoxOS Device, it must have been flashed
+with a build with marionette enabled. If it doesn't have marionette
+enabled, then running <code>make test-integration</code> will time out.</p>
+
+<p>The testvars file is a JSON file that maps app names to objects
+holding key/values as required by that app's integration tests.  See
+that app's integration test code and/or README for which key/values
+are required.</p>
+
+<h3>
+<a name="ui-tests" class="anchor" href="#ui-tests"><span class="octicon octicon-link"></span></a>UI Tests</h3>
+
+<h4>
+<a name="functional" class="anchor" href="#functional"><span class="octicon octicon-link"></span></a>Functional</h4>
+
+<p>See <a href="https://github.com/mozilla-b2g/gaia/blob/master/tests/python/gaia-ui-tests/README.md">Gaia functional tests README</a></p>
+
+<h4>
+<a name="endurance" class="anchor" href="#endurance"><span class="octicon octicon-link"></span></a>Endurance</h4>
+
+<p>See <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Platform/Automated_testing/endurance_tests/how_to_run_gaiaui_endurance_tests">how to run the Gaia endurance tests</a></p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/slatki">slatki</a> can be found on <a href="https://github.com/slatki/gaia">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
